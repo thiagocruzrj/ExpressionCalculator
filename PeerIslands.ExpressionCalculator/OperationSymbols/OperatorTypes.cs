@@ -3,7 +3,7 @@
     public enum OperatorTypes
     {
         Sum,
-        Substract,
+        Subtract,
         Multiply,
         Divide
     }
