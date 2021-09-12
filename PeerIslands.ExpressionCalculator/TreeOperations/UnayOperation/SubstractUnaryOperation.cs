@@ -2,6 +2,6 @@
 {
     public class SubstractUnaryOperation : UnaryOperation
     {
-        public SubstractUnaryOperation(ITreeOperation rightSide) : base(rightSide, (a) => -a) { }
+        public SubstractUnaryOperation(TreeOperation rightSide) : base(rightSide, (a) => -a) { }
     }
 }

@@ -2,6 +2,6 @@
 {
     public class SubstractBinaryOperation : BinaryOperation
     {
-        public SubstractBinaryOperation(ITreeOperation leftSide, ITreeOperation rightSide) : base(leftSide, rightSide, (a, b) => a - b) { }
+        public SubstractBinaryOperation(TreeOperation leftSide, TreeOperation rightSide) : base(leftSide, rightSide, (a, b) => a - b) { }
     }
 }

@@ -1,14 +1,7 @@
-﻿using PeerIslands.ExpressionCalculator.OperationSymbols;
-using System;
-using System.Collections.Generic;
-
-namespace PeerIslands.ExpressionCalculator.TreeOperations
+﻿namespace PeerIslands.ExpressionCalculator.TreeOperations
 {
-    public class TreeOperation : ITreeOperationBuilder
+    public abstract class TreeOperation
     {
-        public ITreeOperation CreateTreeOperation(IList<Symbol> symbols)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract double Calculate();
     }
 }

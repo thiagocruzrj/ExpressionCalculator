@@ -2,6 +2,6 @@
 {
     public class DivideBinaryOperation : BinaryOperation
     {
-        public DivideBinaryOperation(ITreeOperation leftSide, ITreeOperation rightSide) : base(leftSide, rightSide, (a, b) => a / b) { }
+        public DivideBinaryOperation(TreeOperation leftSide, TreeOperation rightSide) : base(leftSide, rightSide, (a, b) => a / b) { }
     }
 }

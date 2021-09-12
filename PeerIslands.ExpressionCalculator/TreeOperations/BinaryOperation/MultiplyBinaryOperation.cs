@@ -2,6 +2,6 @@
 {
     public class MultiplyBinaryOperation : BinaryOperation
     {
-        public MultiplyBinaryOperation(ITreeOperation leftSide, ITreeOperation rightSide) : base(leftSide, rightSide, (a, b) => a * b) { }
+        public MultiplyBinaryOperation(TreeOperation leftSide, TreeOperation rightSide) : base(leftSide, rightSide, (a, b) => a * b) { }
     }
 }

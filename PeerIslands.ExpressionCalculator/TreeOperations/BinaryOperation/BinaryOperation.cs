@@ -2,20 +2,20 @@
 
 namespace PeerIslands.ExpressionCalculator.TreeOperations.BinaryOperation
 {
-    public abstract class BinaryOperation : ITreeOperation
+    public abstract class BinaryOperation : TreeOperation
     {
-        private readonly ITreeOperation _leftSide;
-        private readonly ITreeOperation _rightSide;
+        private readonly TreeOperation _leftSide;
+        private readonly TreeOperation _rightSide;
         private readonly Func<double, double, double> _operator;
 
-        public BinaryOperation(ITreeOperation leftSide, ITreeOperation rightSide, Func<double, double, double> @operator)
+        public BinaryOperation(TreeOperation leftSide, TreeOperation rightSide, Func<double, double, double> @operator)
         {
             _leftSide = leftSide;
             _rightSide = rightSide;
             _operator = @operator;
         }
 
-        public double Calculate()
+        public override double Calculate()
         {
             var leftSideValue = _leftSide.Calculate();
             var rightSideValue = _rightSide.Calculate();

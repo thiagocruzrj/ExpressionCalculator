@@ -5,6 +5,6 @@ namespace PeerIslands.ExpressionCalculator.TreeOperations
 {
     public interface ITreeOperationBuilder
     {
-        ITreeOperation CreateTreeOperation(IList<Symbol> symbols);
+        TreeOperation CreateTreeOperation(IList<Symbol> symbols);
     }
 }
