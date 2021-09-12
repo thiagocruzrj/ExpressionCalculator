@@ -15,12 +15,6 @@ namespace PeerIslands.ExpressionCalculator.TreeOperations.BinaryOperation
             _operator = @operator;
         }
 
-        public override double Calculate()
-        {
-            var leftSideValue = _leftSide.Calculate();
-            var rightSideValue = _rightSide.Calculate();
-
-            return _operator(leftSideValue, rightSideValue);
-        }
+        public override double Calculate() => _operator(_leftSide.Calculate(), _rightSide.Calculate());
     }
 }

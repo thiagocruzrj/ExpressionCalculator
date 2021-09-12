@@ -13,11 +13,6 @@ namespace PeerIslands.ExpressionCalculator.TreeOperations.UnayOperation
             _operator = @operator;
         }
 
-        public override double Calculate()
-        {
-            var rightSideValue = _rightSide.Calculate();
-
-            return _operator(rightSideValue);
-        }
+        public override double Calculate() => _operator(_rightSide.Calculate());
     }
 }
