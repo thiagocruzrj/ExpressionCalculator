@@ -1,8 +1,8 @@
 ﻿namespace PeerIslands.ExpressionCalculator.OperationSymbols
 {
-    public class NumberSymbol : ISymbol
+    public class NumberSymbol : Symbol
     {
-        public SymbolType Type => SymbolType.Number;
+        public override SymbolType Type => SymbolType.Number;
 
         public double Number { get; }
 

@@ -1,8 +1,8 @@
 ﻿namespace PeerIslands.ExpressionCalculator.OperationSymbols
 {
-    public class SpecialSymbol : ISymbol
+    public class SpecialSymbol : Symbol
     {
-        public SymbolType Type => SymbolType.Parentheses;
+        public override SymbolType Type => SymbolType.Parentheses;
 
         public SpecialSymbolsTypes SpecialSymbolType { get; }
 

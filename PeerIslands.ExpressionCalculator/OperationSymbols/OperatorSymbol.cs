@@ -1,8 +1,8 @@
 ﻿namespace PeerIslands.ExpressionCalculator.OperationSymbols
 {
-    public class OperatorSymbol : ISymbol
+    public class OperatorSymbol : Symbol
     {
-        public SymbolType Type => SymbolType.Operator;
+        public override SymbolType Type => SymbolType.Operator;
 
         public OperatorTypes OperatorTypes { get; }
 
