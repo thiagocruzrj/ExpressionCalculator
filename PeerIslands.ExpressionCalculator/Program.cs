@@ -1,10 +1,11 @@
-﻿using System;
+﻿using PeerIslands.ExpressionCalculator.Tools;
+using System;
 
 namespace PeerIslands.ExpressionCalculator
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Run();
         }
@@ -25,6 +26,8 @@ namespace PeerIslands.ExpressionCalculator
                     default:
                         try
                         {
+                            StringExpressionVerifier.VerifyExpression(stringExpression);
+
                             var result = calculator.Calculate(stringExpression);
                             Console.WriteLine($"{stringExpression} = {result}");
 
