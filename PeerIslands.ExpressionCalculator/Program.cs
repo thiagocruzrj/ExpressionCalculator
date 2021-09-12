@@ -3,14 +3,14 @@ using System;
 
 namespace PeerIslands.ExpressionCalculator
 {
-    class Program
+    public class Program
     {
-        static void Main()
+        public static void Main()
         {
             Run();
         }
 
-        static void Run()
+        public static void Run()
         {
             while (true)
             {
@@ -26,7 +26,7 @@ namespace PeerIslands.ExpressionCalculator
                     default:
                         try
                         {
-                            StringExpressionVerifier.VerifyExpression(stringExpression);
+                            StringExpressionValidator.ValidateExpression(stringExpression);
 
                             var result = calculator.Calculate(stringExpression);
                             Console.WriteLine($"{stringExpression} = {result}");

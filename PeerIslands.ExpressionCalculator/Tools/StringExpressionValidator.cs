@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace PeerIslands.ExpressionCalculator.Tools
 {
-    public class StringExpressionVerifier
+    public class StringExpressionValidator
     {
-        public static void VerifyExpression(string expression)
+        public static void ValidateExpression(string expression)
         {
             if (string.IsNullOrWhiteSpace(expression))
                 throw new FormatException("Empty Expression, try again !");
@@ -16,14 +16,14 @@ namespace PeerIslands.ExpressionCalculator.Tools
             if (openParenthesesCount != closeParenthesessCount)
                 throw new FormatException("Wrong number of parentheses in the expression!");
 
-            var bracketsOrder = expression
+            var parenthesesOrder = expression
                 .Where(c => c == '(' || c == ')')
                 .Aggregate("", (current, next) => current + next);
 
-            while (bracketsOrder.Contains("(" + ")"))
-                bracketsOrder = bracketsOrder.Replace("(" + ")", "");
+            while (parenthesesOrder.Contains("(" + ")"))
+                parenthesesOrder = parenthesesOrder.Replace("(" + ")", "");
 
-            if (!string.IsNullOrEmpty(bracketsOrder))
+            if (!string.IsNullOrEmpty(parenthesesOrder))
                 throw new FormatException("Wrong order of parentheses in the expression!");
         }
     }

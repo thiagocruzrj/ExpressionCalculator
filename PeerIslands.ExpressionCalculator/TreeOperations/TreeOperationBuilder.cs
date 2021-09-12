@@ -12,7 +12,7 @@ namespace PeerIslands.ExpressionCalculator.TreeOperations
 
         private TreeOperation GetSumSubtractCalc(IList<Symbol> symbols, int index, out int currentIndex)
         {
-            var leftSideNode = GetMultiplyDevideCalc(symbols, index, out index);
+            var leftSide = GetMultiplyDevideCalc(symbols, index, out index);
 
             while (index < symbols.Count)
             {
@@ -20,30 +20,30 @@ namespace PeerIslands.ExpressionCalculator.TreeOperations
                     currentSymbol.OperatorTypes == OperatorTypes.Divide)
                 {
                     currentIndex = index;
-                    return leftSideNode;
+                    return leftSide;
                 }
 
                 index += 1;
 
-                TreeOperation rightSideNode = GetMultiplyDevideCalc(symbols, index, out index);
+                TreeOperation rightSide = GetMultiplyDevideCalc(symbols, index, out index);
 
                 switch (currentSymbol.OperatorTypes)
                 {
                     case OperatorTypes.Sum:
-                        leftSideNode = new SumBinaryOperation(leftSideNode, rightSideNode);
+                        leftSide = new SumBinaryOperation(leftSide, rightSide);
                         break;
                     case OperatorTypes.Subtract:
-                        leftSideNode = new SubtractBinaryOperation(leftSideNode, rightSideNode);
+                        leftSide = new SubtractBinaryOperation(leftSide, rightSide);
                         break;
                 }
             }
             currentIndex = index;
-            return leftSideNode;
+            return leftSide;
         }
 
         private TreeOperation GetMultiplyDevideCalc(IList<Symbol> symbols, int index, out int currentIndex)
         {
-            var leftSideNode = GetUnaryOperation(symbols, index, out index);
+            var leftSide = GetUnaryOperation(symbols, index, out index);
 
             while (index < symbols.Count)
             {
@@ -52,25 +52,25 @@ namespace PeerIslands.ExpressionCalculator.TreeOperations
                     currentSymbol.OperatorTypes == OperatorTypes.Subtract)
                 {
                     currentIndex = index;
-                    return leftSideNode;
+                    return leftSide;
                 }
 
                 index += 1;
 
-                var rightSideNode = GetUnaryOperation(symbols, index, out index);
+                var rightSide = GetUnaryOperation(symbols, index, out index);
 
                 switch (currentSymbol.OperatorTypes)
                 {
                     case OperatorTypes.Multiply:
-                        leftSideNode = new MultiplyBinaryOperation(leftSideNode, rightSideNode);
+                        leftSide = new MultiplyBinaryOperation(leftSide, rightSide);
                         break;
                     case OperatorTypes.Divide:
-                        leftSideNode = new DivideBinaryOperation(leftSideNode, rightSideNode);
+                        leftSide = new DivideBinaryOperation(leftSide, rightSide);
                         break;
                 }
             }
             currentIndex = index;
-            return leftSideNode;
+            return leftSide;
         }
 
         private TreeOperation GetUnaryOperation(IList<Symbol> symbols, int index, out int currentIndex)
@@ -86,16 +86,16 @@ namespace PeerIslands.ExpressionCalculator.TreeOperations
                             continue;
                         case OperatorTypes.Subtract:
                             index += 1;
-                            var rightSideNode = GetUnaryOperation(symbols, index, out index);
+                            var rightSide = GetUnaryOperation(symbols, index, out index);
                             currentIndex = index;
-                            return new SubstractUnaryOperation(rightSideNode);
+                            return new SubstractUnaryOperation(rightSide);
                     }
                 }
-                var nodeLeaf = GetSymbol(symbols, index, out index);
+                var unarySymbol = GetSymbol(symbols, index, out index);
                 currentIndex = index;
-                return nodeLeaf;
+                return unarySymbol;
             }
-            throw new FormatException("GetUnaryOperation");
+            throw new FormatException("Fail trying to do an Operation with this symbols");
         }
 
         private TreeOperation GetSymbol(IList<Symbol> symbols, int index, out int currentIndex)
@@ -103,11 +103,11 @@ namespace PeerIslands.ExpressionCalculator.TreeOperations
             if (symbols[index] is NumberSymbol)
             {
                 var currentSymbol = symbols[index] as NumberSymbol;
-                var node = new NumberOperation(currentSymbol.Number);
+                var operation = new NumberOperation(currentSymbol.Number);
 
                 currentIndex = index + 1;
 
-                return node;
+                return operation;
             }
 
             if (symbols[index] is SpecialSymbol)
@@ -118,11 +118,11 @@ namespace PeerIslands.ExpressionCalculator.TreeOperations
                 {
                     index += 1;
 
-                    var node = GetSumSubtractCalc(symbols, index, out index);
+                    var sumWithSubtractCalc = GetSumSubtractCalc(symbols, index, out index);
 
                     currentIndex = index + 1;
 
-                    return node;
+                    return sumWithSubtractCalc;
                 }
             }
 
